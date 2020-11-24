@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MapEditor.User_controls
 {
@@ -30,14 +31,23 @@ namespace MapEditor.User_controls
         public int TileHeight { get => tileHeight; set => tileHeight = value; }
         public int TileWidth { get => tileWidth; set => tileWidth = value; }
 
-
-        public event Action<PictureBox, int> onTileClicked;
+        public event Action<PictureBox, int, int, int> onTileClicked;
         public event Action<int> onTilemapLoading;
 
         public Tilemap()
         {
             InitializeComponent();
         }
+
+        public void RedrawTiles (List<DungeonGeneration.Tile<Bitmap>> tiles)
+        {
+            if (tiles.Count == 0) { pictureBoxes.ForEach(p => p.Image = null); }
+            foreach(Tile tile in tiles)
+            {
+                pictureBoxes[(int)(tile.X * tilemapWidth) + (int)tile.Y].Image = tile.Sprite as Bitmap;
+            }
+        }
+
 
         private void RebuildTilemap ()
         {
@@ -91,7 +101,7 @@ namespace MapEditor.User_controls
 
         private void TileClicked (object sender, EventArgs e)
         {
-            onTileClicked?.Invoke(sender as PictureBox, pictureBoxes.IndexOf(sender as PictureBox));
+            onTileClicked?.Invoke(sender as PictureBox, pictureBoxes.IndexOf(sender as PictureBox), (sender as PictureBox).Location.X / tileWidth, (sender as PictureBox).Location.Y / tileHeight);
         }
         private void TilemapLoading()
         {

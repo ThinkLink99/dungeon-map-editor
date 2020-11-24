@@ -33,5 +33,17 @@ namespace MapEditor.Properties {
                 this["storedUrls"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string storedTileSheets {
+            get {
+                return ((string)(this["storedTileSheets"]));
+            }
+            set {
+                this["storedTileSheets"] = value;
+            }
+        }
     }
 }

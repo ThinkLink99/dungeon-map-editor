@@ -36,8 +36,8 @@
             this.btnRemoveRoom = new System.Windows.Forms.Button();
             this.treeRooms = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pbTile = new System.Windows.Forms.PictureBox();
             this.ptyTile = new System.Windows.Forms.PropertyGrid();
+            this.pbTile = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
@@ -69,7 +69,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(142, 75);
+            this.tabPage1.Size = new System.Drawing.Size(215, 345);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Room Data";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -88,8 +88,8 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.treeRooms);
-            this.splitContainer4.Size = new System.Drawing.Size(136, 69);
-            this.splitContainer4.SplitterDistance = 25;
+            this.splitContainer4.Size = new System.Drawing.Size(209, 339);
+            this.splitContainer4.SplitterDistance = 122;
             this.splitContainer4.TabIndex = 1;
             // 
             // splitContainer5
@@ -105,8 +105,8 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.btnRemoveRoom);
-            this.splitContainer5.Size = new System.Drawing.Size(136, 25);
-            this.splitContainer5.SplitterDistance = 62;
+            this.splitContainer5.Size = new System.Drawing.Size(209, 122);
+            this.splitContainer5.SplitterDistance = 95;
             this.splitContainer5.TabIndex = 8;
             // 
             // btnAddRoom
@@ -114,7 +114,7 @@
             this.btnAddRoom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddRoom.Location = new System.Drawing.Point(0, 0);
             this.btnAddRoom.Name = "btnAddRoom";
-            this.btnAddRoom.Size = new System.Drawing.Size(62, 25);
+            this.btnAddRoom.Size = new System.Drawing.Size(95, 122);
             this.btnAddRoom.TabIndex = 5;
             this.btnAddRoom.Text = "Add Room";
             this.btnAddRoom.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             this.btnRemoveRoom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRemoveRoom.Location = new System.Drawing.Point(0, 0);
             this.btnRemoveRoom.Name = "btnRemoveRoom";
-            this.btnRemoveRoom.Size = new System.Drawing.Size(70, 25);
+            this.btnRemoveRoom.Size = new System.Drawing.Size(110, 122);
             this.btnRemoveRoom.TabIndex = 6;
             this.btnRemoveRoom.Text = "Remove Room";
             this.btnRemoveRoom.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             this.treeRooms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeRooms.Location = new System.Drawing.Point(0, 0);
             this.treeRooms.Name = "treeRooms";
-            this.treeRooms.Size = new System.Drawing.Size(136, 40);
+            this.treeRooms.Size = new System.Drawing.Size(209, 213);
             this.treeRooms.TabIndex = 1;
             this.treeRooms.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeRooms_AfterSelect);
             // 
@@ -152,16 +152,6 @@
             this.tabPage2.Text = "Tile Data";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // pbTile
-            // 
-            this.pbTile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbTile.Location = new System.Drawing.Point(6, 6);
-            this.pbTile.Name = "pbTile";
-            this.pbTile.Size = new System.Drawing.Size(50, 50);
-            this.pbTile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbTile.TabIndex = 2;
-            this.pbTile.TabStop = false;
-            // 
             // ptyTile
             // 
             this.ptyTile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -171,6 +161,17 @@
             this.ptyTile.Name = "ptyTile";
             this.ptyTile.Size = new System.Drawing.Size(203, 277);
             this.ptyTile.TabIndex = 3;
+            this.ptyTile.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ptyTile_PropertyValueChanged);
+            // 
+            // pbTile
+            // 
+            this.pbTile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbTile.Location = new System.Drawing.Point(6, 6);
+            this.pbTile.Name = "pbTile";
+            this.pbTile.Size = new System.Drawing.Size(50, 50);
+            this.pbTile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTile.TabIndex = 2;
+            this.pbTile.TabStop = false;
             // 
             // RoomBuilder
             // 

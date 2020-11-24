@@ -30,6 +30,7 @@
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +43,9 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tilemap1 = new MapEditor.User_controls.Tilemap();
             this.tilesheetLoader2 = new MapEditor.User_controls.TilesheetLoader();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -64,9 +67,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 686);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 311);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1269, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(320, 22);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -75,20 +78,27 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1269, 24);
+            this.menuStrip.Size = new System.Drawing.Size(320, 24);
             this.menuStrip.TabIndex = 11;
             this.menuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToolStripMenuItem});
+            this.exportToolStripMenuItem,
+            this.loadToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -99,20 +109,22 @@
             this.toJsonToolStripMenuItem,
             this.toXMLToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // toJsonToolStripMenuItem
             // 
             this.toJsonToolStripMenuItem.Name = "toJsonToolStripMenuItem";
-            this.toJsonToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.toJsonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.toJsonToolStripMenuItem.Text = "To Json";
+            this.toJsonToolStripMenuItem.Click += new System.EventHandler(this.toJsonToolStripMenuItem_Click);
             // 
             // toXMLToolStripMenuItem
             // 
             this.toXMLToolStripMenuItem.Name = "toXMLToolStripMenuItem";
-            this.toXMLToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.toXMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.toXMLToolStripMenuItem.Text = "To XML";
+            this.toXMLToolStripMenuItem.Click += new System.EventHandler(this.toXMLToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -128,8 +140,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1269, 662);
-            this.splitContainer1.SplitterDistance = 217;
+            this.splitContainer1.Size = new System.Drawing.Size(320, 287);
+            this.splitContainer1.SplitterDistance = 139;
             this.splitContainer1.TabIndex = 12;
             // 
             // splitContainer3
@@ -146,8 +158,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.roomBuilder1);
-            this.splitContainer3.Size = new System.Drawing.Size(215, 660);
-            this.splitContainer3.SplitterDistance = 212;
+            this.splitContainer3.Size = new System.Drawing.Size(137, 285);
+            this.splitContainer3.SplitterDistance = 91;
             this.splitContainer3.TabIndex = 0;
             // 
             // propertyGrid1
@@ -155,7 +167,7 @@
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(215, 212);
+            this.propertyGrid1.Size = new System.Drawing.Size(137, 91);
             this.propertyGrid1.TabIndex = 1;
             // 
             // roomBuilder1
@@ -165,7 +177,7 @@
             this.roomBuilder1.Name = "roomBuilder1";
             this.roomBuilder1.SelectedRoom = null;
             this.roomBuilder1.SelectedTile = null;
-            this.roomBuilder1.Size = new System.Drawing.Size(215, 444);
+            this.roomBuilder1.Size = new System.Drawing.Size(137, 190);
             this.roomBuilder1.TabIndex = 0;
             // 
             // splitContainer2
@@ -182,8 +194,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tilesheetLoader2);
-            this.splitContainer2.Size = new System.Drawing.Size(1046, 660);
-            this.splitContainer2.SplitterDistance = 463;
+            this.splitContainer2.Size = new System.Drawing.Size(175, 285);
+            this.splitContainer2.SplitterDistance = 199;
             this.splitContainer2.TabIndex = 13;
             // 
             // tilemap1
@@ -191,7 +203,7 @@
             this.tilemap1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tilemap1.Location = new System.Drawing.Point(0, 0);
             this.tilemap1.Name = "tilemap1";
-            this.tilemap1.Size = new System.Drawing.Size(1046, 463);
+            this.tilemap1.Size = new System.Drawing.Size(175, 199);
             this.tilemap1.TabIndex = 0;
             this.tilemap1.TileHeight = 32;
             this.tilemap1.TilemapHeight = 5;
@@ -203,21 +215,34 @@
             this.tilesheetLoader2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tilesheetLoader2.Location = new System.Drawing.Point(0, 0);
             this.tilesheetLoader2.Name = "tilesheetLoader2";
-            this.tilesheetLoader2.Size = new System.Drawing.Size(1046, 193);
+            this.tilesheetLoader2.Size = new System.Drawing.Size(175, 82);
             this.tilesheetLoader2.TabIndex = 0;
             // 
-            // toolStripStatusLabel1
+            // loadToolStripMenuItem
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fromJsonToolStripMenuItem});
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            // 
+            // fromJsonToolStripMenuItem
+            // 
+            this.fromJsonToolStripMenuItem.Name = "fromJsonToolStripMenuItem";
+            this.fromJsonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fromJsonToolStripMenuItem.Text = "From Json";
+            this.fromJsonToolStripMenuItem.Click += new System.EventHandler(this.fromJsonToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1269, 708);
+            this.ClientSize = new System.Drawing.Size(320, 333);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.statusStrip1);
@@ -255,7 +280,6 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toJsonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toXMLToolStripMenuItem;
-        private User_controls.TilesheetLoader tilesheetLoader1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
@@ -265,6 +289,9 @@
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private User_controls.RoomBuilder roomBuilder1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromJsonToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

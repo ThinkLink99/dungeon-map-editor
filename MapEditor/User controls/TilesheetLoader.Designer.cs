@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnLoadTileSheet = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbUrls = new System.Windows.Forms.ComboBox();
             this.btnOpenFileDialog = new System.Windows.Forms.Button();
             this.panTileSet = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnLoadTileSheet = new System.Windows.Forms.Button();
             this.ofdTileSetDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -56,10 +56,22 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnLoadTileSheet);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.panTileSet);
-            this.splitContainer1.Size = new System.Drawing.Size(676, 205);
+            this.splitContainer1.Size = new System.Drawing.Size(228, 114);
             this.splitContainer1.SplitterDistance = 61;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // btnLoadTileSheet
+            // 
+            this.btnLoadTileSheet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadTileSheet.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadTileSheet.Location = new System.Drawing.Point(86, 84);
+            this.btnLoadTileSheet.Name = "btnLoadTileSheet";
+            this.btnLoadTileSheet.Size = new System.Drawing.Size(137, 25);
+            this.btnLoadTileSheet.TabIndex = 11;
+            this.btnLoadTileSheet.Text = "Load Tile Sheet";
+            this.btnLoadTileSheet.UseVisualStyleBackColor = true;
+            this.btnLoadTileSheet.Click += new System.EventHandler(this.btnLoadTileSheet_Click);
             // 
             // panel1
             // 
@@ -69,7 +81,7 @@
             this.panel1.Controls.Add(this.btnOpenFileDialog);
             this.panel1.Location = new System.Drawing.Point(3, 17);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(668, 28);
+            this.panel1.Size = new System.Drawing.Size(220, 28);
             this.panel1.TabIndex = 9;
             // 
             // cmbUrls
@@ -79,14 +91,14 @@
             this.cmbUrls.FormattingEnabled = true;
             this.cmbUrls.Location = new System.Drawing.Point(3, 3);
             this.cmbUrls.Name = "cmbUrls";
-            this.cmbUrls.Size = new System.Drawing.Size(610, 21);
+            this.cmbUrls.Size = new System.Drawing.Size(162, 21);
             this.cmbUrls.TabIndex = 0;
             // 
             // btnOpenFileDialog
             // 
             this.btnOpenFileDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenFileDialog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenFileDialog.Location = new System.Drawing.Point(619, 3);
+            this.btnOpenFileDialog.Location = new System.Drawing.Point(171, 3);
             this.btnOpenFileDialog.Name = "btnOpenFileDialog";
             this.btnOpenFileDialog.Size = new System.Drawing.Size(43, 21);
             this.btnOpenFileDialog.TabIndex = 10;
@@ -102,20 +114,8 @@
             this.panTileSet.AutoScroll = true;
             this.panTileSet.Location = new System.Drawing.Point(3, 51);
             this.panTileSet.Name = "panTileSet";
-            this.panTileSet.Size = new System.Drawing.Size(668, 122);
+            this.panTileSet.Size = new System.Drawing.Size(220, 31);
             this.panTileSet.TabIndex = 3;
-            // 
-            // btnLoadTileSheet
-            // 
-            this.btnLoadTileSheet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoadTileSheet.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadTileSheet.Location = new System.Drawing.Point(534, 175);
-            this.btnLoadTileSheet.Name = "btnLoadTileSheet";
-            this.btnLoadTileSheet.Size = new System.Drawing.Size(137, 25);
-            this.btnLoadTileSheet.TabIndex = 11;
-            this.btnLoadTileSheet.Text = "Load Tile Sheet";
-            this.btnLoadTileSheet.UseVisualStyleBackColor = true;
-            this.btnLoadTileSheet.Click += new System.EventHandler(this.btnLoadTileSheet_Click);
             // 
             // ofdTileSetDialog
             // 
@@ -128,7 +128,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "TilesheetLoader";
-            this.Size = new System.Drawing.Size(676, 205);
+            this.Size = new System.Drawing.Size(228, 114);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

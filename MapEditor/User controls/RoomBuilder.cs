@@ -15,17 +15,49 @@ namespace MapEditor.User_controls
         List<Room> rooms;
 
         public event Action<Room> onSelectedRoomChanged;
+        public event Action<Tile> onSelectedTileChanged;
+
         public PictureBox SelectedTileImage { get => pbTile; set => pbTile = value; }
         public Tile SelectedTile { get; set; }
 
         public PropertyGrid TileProperties { get => ptyTile; set => ptyTile = value; }
 
-        public Room SelectedRoom { get { if (rooms.Count > 0) { return rooms[treeRooms.SelectedNode == null ? 0 : treeRooms.SelectedNode.Index]; } else { return null; } } set { if (rooms.Count > 0) { rooms[treeRooms.SelectedNode == null ? 0 : treeRooms.SelectedNode.Index] = value; } else { rooms.Add(value); } } }
+        public List<Room> Rooms { get => rooms; set => rooms = value; }
+
+        public Room SelectedRoom 
+        { 
+            get 
+            { 
+                if (rooms.Count > 0) 
+                { 
+                    return rooms[treeRooms.SelectedNode == null ? 0 : treeRooms.SelectedNode.Index]; 
+                } 
+                else 
+                { 
+                    return null; 
+                } 
+            } 
+            set 
+            { 
+                if (rooms.Count > 0) 
+                { 
+                    rooms[treeRooms.SelectedNode == null ? 0 : treeRooms.SelectedNode.Index] = value; 
+                } 
+            } 
+        }
 
         public RoomBuilder()
         {
             InitializeComponent();
             rooms = new List<Room>();
+        }
+
+        public void RefreshTree()
+        {
+            foreach (var room in rooms)
+            {
+                treeRooms.Nodes.Add($"Room {room.ID}");
+            }
         }
 
         private void SelectedRoomChanged()
@@ -36,8 +68,8 @@ namespace MapEditor.User_controls
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
-
-            var id = rooms.Count == 0 || rooms[treeRooms.Nodes.Count - 1] == null ? treeRooms.Nodes.Count + 1 : rooms[treeRooms.Nodes.Count - 1].ID + 1;
+            var id = rooms.Count == 0 || 
+                     rooms[treeRooms.Nodes.Count - 1] == null ? treeRooms.Nodes.Count + 1 : rooms[treeRooms.Nodes.Count - 1].ID + 1;
             treeRooms.Nodes.Add($"Room {id}");
             rooms.Add(new Room() { ID = id });
         }
@@ -62,6 +94,11 @@ namespace MapEditor.User_controls
         private void treeRooms_AfterSelect(object sender, TreeViewEventArgs e)
         {
             SelectedRoomChanged();
+        }
+
+        private void ptyTile_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            onSelectedTileChanged?.Invoke(SelectedTile);
         }
     }
 }

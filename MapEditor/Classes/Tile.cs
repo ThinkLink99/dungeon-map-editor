@@ -1,22 +1,42 @@
 ﻿using DungeonGeneration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Drawing;
+using System.IO;
 namespace MapEditor
 {
-    public class Tile : ITile
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Tile : Tile<Bitmap>
     {
-        public TILE_IDS ID { get; set; }
+        byte[] spriteBytes;
 
-        public object Sprite { get; set; }
+        public override Bitmap Sprite
+        {
+            get
+            {
+                MemoryStream ms = new MemoryStream(spriteBytes);
+                return (Bitmap)Image.FromStream(ms);
+            }
+            set
+            {
+                MemoryStream ms = new MemoryStream();
+                value.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                spriteBytes = ms.ToArray();
+            }
+        }
 
-        public float X { get; set; }
-
-        public float Y { get; set; }
-
-        public bool Dense { get; set; }
+        [JsonProperty("Sprite")]
+        public byte[] SpriteBytes
+        {
+            get
+            {
+                return spriteBytes;
+            }
+            set
+            {
+                spriteBytes = value;
+            }
+        }
     }
 }
